@@ -1,0 +1,2 @@
+module CheckEnrolmentHelper
+end
