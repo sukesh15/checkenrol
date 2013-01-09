@@ -1,0 +1,7 @@
+
+<img src="<%= @captcha_image.data_uri %>">
+
+<%= form_tag("/check_enrolment/check", :method => "post") do %>
+  <%= text_field_tag(:captcha) %>
+  <%= submit_tag %>
+<% end %>
