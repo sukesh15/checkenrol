@@ -10,14 +10,12 @@
   <%= f.label :street_name %>:
   <%= f.text_field :street_name %><br />
   
-  <%= f.label "Suburb or Postcode" %>:
-  <%= text_field_tag(:autocomplete) %>
+  <%= f.label "Suburb & Postcode" %>:
+  <%= text_field_tag(:autocomplete, flash[:autocomplete]) %>
   
-  <%= f.label :postcode %>:
-  <%= f.text_field :postcode %><br />
+  <%= f.hidden_field :postcode %><br />
   
-  <%= f.label :suburb %>:
-  <%= f.text_field :suburb %><br />
+  <%= f.hidden_field :suburb %><br />
   
   <img src="<%= @captcha_image.data_uri %>">
   <%= text_field_tag(:captcha) %>
