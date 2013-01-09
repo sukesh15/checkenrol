@@ -1,6 +1,54 @@
+class AECResponse
+  def initialize doc
+    @doc = doc
+  end
+  
+  def confirmed?
+    !@doc.css('#ctl00_ContentPlaceHolderBody_panelSuccess').empty?
+  end
+  
+  def enrolled_address
+    if confirmed?
+      @doc.css('#ctl00_ContentPlaceHolderBody_labelAddress').text
+    else
+      ""
+    end
+  end
+  
+  def errors
+    errors = @doc.css("table span.requiredtext:not([style*=\"display: none\"])").|(@doc.xpath('//h1[contains(text(), "Sorry, the entered security code could not be confirmed")]'))
+    errors.map{|error| error.text}.reject{|error| error.include?("e.g.")}
+  end
+end
+
+class AECParser < HTTParty::Parser
+  SupportedFormats.merge!('text/html' => :html)
+
+  def html
+    AECResponse.new(Nokogiri::HTML(body))
+
+    # if (!html_doc.css('#ctl00_ContentPlaceHolderBody_panelSuccess').empty?)
+    #   return {
+    #   :enrolment_status => :confirmed,
+    #   :address => "xyz",
+    #   :federal_division => "",
+    #   :state_district => "",
+    #   :state_region => "",
+    #   :local_government_area => ""
+    #   } 
+    # elsif (!html_doc.css('#ctl00_ContentPlaceHolderBody_panelFailed').empty?)
+    #   return {:enrolment_status => :failed}
+    # else
+    #   return {:enrolment_status => :captcha_failed}
+    # end
+
+  end
+end
+
 class EnrolmentCheck
   include HTTParty
   base_uri 'https://oevf.aec.gov.au'
+  parser AECParser
   
   def initialize persons_details
     @persons_details = persons_details
@@ -32,8 +80,6 @@ class EnrolmentCheck
       }
     }
     
-    EnrolmentCheck.post("/VerifyEnrolment.aspx", options)
-    
+    EnrolmentCheck.post("/VerifyEnrolment.aspx", options).parsed_response
   end
-  
 end

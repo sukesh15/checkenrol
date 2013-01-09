@@ -1,7 +1,32 @@
 
-<img src="<%= @captcha_image.data_uri %>">
+<%= form_for @person, :url => { :action => "check"} do |f| %>
 
-<%= form_tag("/check_enrolment/check", :method => "post") do %>
+  <%= f.label :surname %>:
+  <%= f.text_field :surname %><br />
+  
+  <%= f.label :given_names %>:
+  <%= f.text_field :given_names %><br />
+  
+  <%= f.label :street_name %>:
+  <%= f.text_field :street_name %><br />
+  
+  <%= f.label :postcode %>:
+  <%= f.text_field :postcode %><br />
+  
+  <%= f.label :suburb %>:
+  <%= f.text_field :suburb %><br />
+  
+  <img src="<%= @captcha_image.data_uri %>">
   <%= text_field_tag(:captcha) %>
-  <%= submit_tag %>
+  <%= f.submit %>
 <% end %>
+
+<% if flash[:unconfirmed] %>
+  <span>We could not find you on the electoral roll. Please try again or <a href="http://www.aec.gov.au/enrol/">Enrol Now</a>
+<% end %>
+
+<% if flash[:errors] %>
+  <%= flash[:errors]  %>
+<% end %>
+
+

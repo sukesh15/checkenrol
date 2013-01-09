@@ -1,15 +1,27 @@
 class CheckEnrolmentController < ApplicationController
     
   def show
+    @person = Person.new(flash[:person_details])
     @captcha_image = CaptchaImage.new
     session[:aec_cookies] = @captcha_image.cookies
     session[:captcha_id] = @captcha_image.captcha_id
   end
   
   def check
-    #EnrolmentCheck.new(params[:person])
-    check = EnrolmentCheck.new({:surname => "Fowler", :given_names => "Perryn", :street_name => "St Kilda", :postcode => "3184", :suburb => "ELWOOD (VIC)"})
-    render :inline => check.result(params[:captcha], session[:captcha_id] , session[:aec_cookies])
+    check = EnrolmentCheck.new(params[:person])
+    @result = check.result(params[:captcha], session[:captcha_id] , session[:aec_cookies])
+    
+    if (@result.confirmed?)
+      render "confirmed"
+    else
+      flash[:person_details] = params[:person]
+      if  @result.errors.empty?
+        flash[:unconfirmed] = true
+      else
+        flash[:errors] = @result.errors
+      end
+      redirect_to :action => "show"
+    end
   end
     
   
