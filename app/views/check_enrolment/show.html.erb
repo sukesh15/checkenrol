@@ -10,6 +10,9 @@
   <%= f.label :street_name %>:
   <%= f.text_field :street_name %><br />
   
+  <%= f.label "Suburb or Postcode" %>:
+  <%= text_field_tag(:autocomplete) %>
+  
   <%= f.label :postcode %>:
   <%= f.text_field :postcode %><br />
   
@@ -29,4 +32,15 @@
   <%= flash[:errors]  %>
 <% end %>
 
+<script src="/suburbs.json"></script>
+<script>
+$( "#autocomplete" ).autocomplete({
+  source: suburbs,
+  select: function( event, ui ) {
+         $( "#person_suburb" ).val( ui.item.value.split(" - ")[1] );
+         $( "#person_postcode" ).val(ui.item.value.split(" - ")[0] );
+         return true;
+       }
+});
+</script>
 
