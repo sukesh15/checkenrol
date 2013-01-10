@@ -12,6 +12,7 @@ class CheckEnrolmentController < ApplicationController
     @result = check.result(params[:captcha], session[:captcha_id] , session[:aec_cookies])
     
     if (@result.confirmed?)
+      @person = Person.new(params[:person])
       render "confirmed"
     else
       flash[:person_details] = params[:person]

@@ -5,5 +5,18 @@
     <%= @result.enrolled_address %>
   </div>
 
-  If you have moved from this address you should <a href="http://www.aec.gov.au/enrol/change-address.htm">Update the roll</a> now
+  <%= form_tag('https://secure.aec.gov.au/OnlineForms/Enrolment/Form/Apply/83056040-0525-4745-bc91-a04d00a11c5d', :authenticity_token => false) do %>
+    <%= hidden_field_tag "SubmitRequest.FormId", "83056040-0525-4745-bc91-a04d00a11c5d" %>
+    <%= hidden_field_tag "SubmitRequest.FormPurpose", "changeofdetails" %>
+    <%= hidden_field_tag "ChangeAddress", "true" %>
+    <%= hidden_field_tag "SubmitRequest.Elector.GivenNames", @person.given_names %>
+    <%= hidden_field_tag "SubmitRequest.Elector.Surname", @person.surname %>
+    <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.HabitationName","" %>
+    <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.StreetName", @person.street_name %>
+    <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.Locality", @person.locality %>
+    <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.State", @person.state %>
+    <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.Postcode", @person.postcode %>
+    <%= hidden_field_tag "FormMode", "Wizard" %>
+      <div class="well">If you have moved from this address you should <%= submit_tag "Update your details" %> Now</div>
+  <% end %>
 </div>
