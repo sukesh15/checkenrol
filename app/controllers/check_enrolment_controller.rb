@@ -12,7 +12,7 @@ class CheckEnrolmentController < ApplicationController
     @result = check.result(params[:captcha], session[:captcha_id] , session[:aec_cookies])
     @person = Person.new(params[:person])
     
-    @person.save if params[:mailinglist]
+    @person.save if params[:mailinglist] && !@person.email.blank?
     
     if (@result.confirmed?)
       render "confirmed"
