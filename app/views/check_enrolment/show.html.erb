@@ -23,7 +23,19 @@
 <% end %>
 
 <% if flash[:unconfirmed] %>
-  <span>We could not find you on the electoral roll. Please try again or <a href="http://www.aec.gov.au/enrol/">Enrol Now</a>
+  <%= form_tag('https://secure.aec.gov.au/OnlineForms/Enrolment/Form/Apply/83056040-0525-4745-bc91-a04d00a11c5d', :authenticity_token => false) do %>
+    <%= hidden_field_tag "SubmitRequest.FormId", "83056040-0525-4745-bc91-a04d00a11c5d" %>
+    <%= hidden_field_tag "SubmitRequest.FormState", @person.state %>
+    <%= hidden_field_tag "SubmitRequest.Elector.GivenNames", @person.given_names %>
+    <%= hidden_field_tag "SubmitRequest.Elector.Surname", @person.surname %>
+    <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.HabitationName","" %>
+    <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.StreetName", @person.street_name %>
+    <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.Locality", @person.locality %>
+    <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.State", @person.state %>
+    <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.Postcode", @person.postcode %>
+    <%= hidden_field_tag "FormMode", "Wizard" %>
+      <div>We could not find you on the electoral roll. Please try again or  <%= submit_tag "ENROL NOW" %></div>
+  <% end %>  
 <% end %>
 
 <% if flash[:errors] %>
