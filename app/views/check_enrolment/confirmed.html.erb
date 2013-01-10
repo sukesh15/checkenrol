@@ -1,5 +1,5 @@
 <div class="well">
-  <h3>We found you on the electoral roll at the following address</h3>
+  <h3>You are enrolled at the following address</h3>
 
   <div class="lead">
     <%= @result.enrolled_address %>
@@ -17,6 +17,9 @@
     <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.State", @person.state %>
     <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.Postcode", @person.postcode %>
     <%= hidden_field_tag "FormMode", "Wizard" %>
-      <div class="well">If you have moved from this address you should <%= submit_tag "Update your details" %> Now</div>
+    <p>
+      <strong>If you have moved please</strong>
+      <%= submit_tag "Update your details", :class => "btn btn-success" %>
+    </p>
   <% end %>
 </div>

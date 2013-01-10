@@ -10,8 +10,10 @@
     <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.State", @person.state %>
     <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.Postcode", @person.postcode %>
     <%= hidden_field_tag "FormMode", "Wizard" %>
-      <div class="well">We could not find you on the electoral roll.<br />
-        Please try again or  <%= submit_tag "ENROL NOW" %></div>
+      <div class="well">
+        <h3>We could not find you on the electoral roll.</h3>
+
+        <%= submit_tag "Enrol Now", :class => "btn btn-success btn-small" %></div>
   <% end %>
 <% end %>
 <div class="well">
@@ -24,12 +26,11 @@
     <% end %>
   <% end %>
   <%= form_for @person, :url => { :action => "check"} do |f| %>
+    <%= f.label :given_names %>
+    <%= f.text_field :given_names %><br />
 
     <%= f.label :surname %>
     <%= f.text_field :surname %><br />
-
-    <%= f.label :given_names %>
-    <%= f.text_field :given_names %><br />
 
     <%= f.label :street_name %>
     <%= f.text_field :street_name %><br />
@@ -43,7 +44,7 @@
     <%= f.label "Verification Code" %>
     <img src="<%= @captcha_image.data_uri %>"><br />
     <%= text_field_tag(:captcha) %><br />
-    <%= f.submit "Check Enrolment" %>
+    <%= f.submit "Check Enrolment", :class => "btn btn-success" %>
   <% end %>
 </div>
 <script src="/suburbs.json"></script>
