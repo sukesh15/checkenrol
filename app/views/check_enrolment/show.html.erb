@@ -43,7 +43,7 @@
 
     <%= f.label "Verification Code" %>
     <img src="<%= @captcha_image.data_uri %>"><br />
-    <%= text_field_tag(:captcha) %><br />
+    <%= text_field_tag(:captcha, nil, :autocorrect => "off", :autocapitalize => "off") %><br />
     <%= f.submit "Check Enrolment", :class => "btn btn-success" %>
   <% end %>
 </div>
