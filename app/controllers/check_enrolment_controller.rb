@@ -10,9 +10,11 @@ class CheckEnrolmentController < ApplicationController
   def check
     check = EnrolmentCheck.new(params[:person])
     @result = check.result(params[:captcha], session[:captcha_id] , session[:aec_cookies])
+    @person = Person.new(params[:person])
+    
+    @person.save if params[:mailinglist]
     
     if (@result.confirmed?)
-      @person = Person.new(params[:person])
       render "confirmed"
     else
       flash[:person_details] = params[:person]

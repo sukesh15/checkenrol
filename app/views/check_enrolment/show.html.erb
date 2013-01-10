@@ -38,9 +38,12 @@
     <%= f.label "Suburb & Postcode" %>
     <%= text_field_tag(:autocomplete, flash[:autocomplete]) %>
 
-    <%= f.hidden_field :postcode %><br />
-    <%= f.hidden_field :suburb %>
-
+ 
+    <%= f.label :email %>
+    <%= f.email_field :email %>&nbsp;<label class="checkbox"><%= check_box_tag 'mailinglist', "yes", true%> Sign up to The Greens mailing list</label>
+    <%= f.hidden_field :postcode %>
+    <%= f.hidden_field :suburb %> 
+    <br />
     <%= f.label "Verification Code" %>
     <img src="<%= @captcha_image.data_uri %>"><br />
     <%= text_field_tag(:captcha, nil, :autocorrect => "off", :autocapitalize => "off") %><br />
