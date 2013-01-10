@@ -17,7 +17,7 @@
         <%= submit_tag "Enrol Now", :class => "btn btn-success btn-small" %></div>
   <% end %>
 <% end %>
-<div class="well">
+<div class="well container-fluid">
   <% if flash[:errors] %>
     <% flash[:errors].each do |message| %>
       <div class="alert alert-error fade in">
@@ -27,28 +27,33 @@
     <% end %>
   <% end %>
   <%= form_for @person, :url => { :action => "check"} do |f| %>
-    <%= f.label :given_names %>
-    <%= f.text_field :given_names %><br />
+    <div class="row-fluid">
+      <div class="span6">
+        <%= f.label :given_names %>
+        <%= f.text_field :given_names %><br />
 
-    <%= f.label :surname %>
-    <%= f.text_field :surname %><br />
+        <%= f.label :surname %>
+        <%= f.text_field :surname %><br />
 
-    <%= f.label :street_name %>
-    <%= f.text_field :street_name %><br />
+        <%= f.label :street_name %>
+        <%= f.text_field :street_name %><br />
 
-    <%= f.label "Suburb & Postcode" %>
-    <%= text_field_tag(:autocomplete, flash[:autocomplete]) %>
+        <%= f.label "Suburb & Postcode" %>
+        <%= text_field_tag(:autocomplete, flash[:autocomplete]) %>
+        <%= f.hidden_field :postcode %>
+        <%= f.hidden_field :suburb %>
+      </div>
 
- 
-    <%= f.label :email %>
-    <%= f.email_field :email %>&nbsp;<label class="checkbox"><%= check_box_tag 'mailinglist', "yes", true%> Sign up to The Greens mailing list</label>
-    <%= f.hidden_field :postcode %>
-    <%= f.hidden_field :suburb %> 
-    <br />
-    <%= f.label "Verification Code" %>
-    <img src="<%= @captcha_image.data_uri %>"><br />
-    <%= text_field_tag(:captcha, nil, :autocorrect => "off", :autocapitalize => "off") %><br />
-    <%= f.submit "Check Enrolment", :class => "btn btn-success" %>
+      <div class="span6">
+        <%= f.label :email %>
+        <%= f.email_field :email %>&nbsp;<label class="checkbox"><%= check_box_tag 'mailinglist', "yes", true%> Sign up to The Greens mailing list</label>
+        <br />
+        <%= f.label "Verification Code" %>
+        <img src="<%= @captcha_image.data_uri %>"><br />
+        <%= text_field_tag(:captcha, nil, :autocorrect => "off", :autocapitalize => "off") %><br />
+        <%= f.submit "Check Enrolment", :class => "btn btn-success" %>
+      </div>
+    </div>
   <% end %>
 </div>
 <script src="/suburbs.json"></script>

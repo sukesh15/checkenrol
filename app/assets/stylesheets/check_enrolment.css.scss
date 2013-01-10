@@ -1,3 +1,11 @@
 // Place all the styles related to the check_enrolment controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+label {
+  font-size: 18px;
+}
+
+.ui-autocomplete {
+  list-style-type: none;
+}
