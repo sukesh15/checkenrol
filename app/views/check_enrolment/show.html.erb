@@ -5,7 +5,10 @@
     <%= hidden_field_tag "SubmitRequest.Elector.GivenNames", @person.given_names %>
     <%= hidden_field_tag "SubmitRequest.Elector.Surname", @person.surname %>
     <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.HabitationName","" %>
+    <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.FlatNumber", @person.flat_number %>
+    <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.StreetNumber", @person.street_number %>
     <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.StreetName", @person.street_name %>
+    <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.StreetType", @person.street_type %>
     <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.Locality", @person.locality %>
     <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.State", @person.state %>
     <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.Postcode", @person.postcode %>
@@ -35,30 +38,43 @@
         <%= f.label :surname %>
         <%= f.text_field :surname %><br />
 
-        <%= f.label :street_name %>
-        <%= f.text_field :street_name %><br />
 
-        <%= f.label "Suburb & Postcode" %>
-        <%= text_field_tag(:autocomplete, flash[:autocomplete]) %>
-        <%= f.hidden_field :postcode %>
-        <%= f.hidden_field :suburb %>
-      </div>
-
-      <div class="span6">
         <%= f.label :email %>
         <%= f.email_field :email %>&nbsp;<label class="checkbox"><%= check_box_tag 'mailinglist', "yes", true%> Sign up to The Greens mailing list</label>
         <br />
-        <%= f.label "Verification Code" %>
-        <img src="<%= @captcha_image.data_uri %>"><br />
-        <%= text_field_tag(:captcha, nil, :autocorrect => "off", :autocapitalize => "off") %><br />
+        <br />
+         <%= f.label "Verification Code" %>
+          <img src="<%= @captcha_image.data_uri %>"><br />
+          <%= text_field_tag(:captcha, nil, :autocorrect => "off", :autocapitalize => "off") %><br />
+      </div>
+
+      <div class="span6">
+        <%= f.label :flat_number %>
+        <%= f.text_field :flat_number %><br />
+        <%= f.label :street_number %>
+        <%= f.text_field :street_number %><br />
+        <%= f.label :street_name %>
+        <%= f.text_field :street_name %><br />
+        <%= f.label :street_type %>
+        <%= f.text_field :street_type %><br />
+        <%= f.label "Suburb & Postcode" %>
+        <%= text_field_tag(:suburb_autocomplete, flash[:suburb_autocomplete]) %>
+        <%= f.hidden_field :postcode %>
+        <%= f.hidden_field :suburb %>
+        <br />
+        <br />
         <%= f.submit "Check Enrolment", :class => "btn btn-success" %>
       </div>
     </div>
   <% end %>
 </div>
 <script src="/AEC_postcodes_and_suburbs.json"></script>
+<script src="/street_types.json"></script>
 <script>
-$( "#autocomplete" ).autocomplete({
+$( "#person_street_type" ).autocomplete({
+  source: street_types
+});
+$( "#suburb_autocomplete" ).autocomplete({
   source: suburbs,
   select: function( event, ui ) {
          $( "#person_suburb" ).val( ui.item.value.split(" - ")[1] );

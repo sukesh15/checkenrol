@@ -1,5 +1,5 @@
 class Person < ActiveRecord::Base
-  attr_accessible :given_names, :postcode, :street_name, :suburb, :surname, :email
+  attr_accessible :given_names, :postcode, :street_name, :suburb, :surname, :email, :flat_number, :street_number, :street_type
   SUBURB_STATE_REGEX = /(.*) \((.*)\)$/
   
   def locality

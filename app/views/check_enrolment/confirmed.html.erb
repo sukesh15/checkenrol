@@ -12,7 +12,10 @@
     <%= hidden_field_tag "SubmitRequest.Elector.GivenNames", @person.given_names %>
     <%= hidden_field_tag "SubmitRequest.Elector.Surname", @person.surname %>
     <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.HabitationName","" %>
+    <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.FlatNumber", @person.flat_number %>
+    <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.StreetNumber", @person.street_number %>
     <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.StreetName", @person.street_name %>
+    <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.StreetType", @person.street_type %>
     <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.Locality", @person.locality %>
     <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.State", @person.state %>
     <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.Postcode", @person.postcode %>

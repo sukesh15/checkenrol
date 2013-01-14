@@ -18,8 +18,7 @@ class CheckEnrolmentController < ApplicationController
       render "confirmed"
     else
       flash[:person_details] = params[:person]
-      puts params[:autocomplete]
-      flash[:autocomplete] = params[:autocomplete]
+      flash[:suburb_autocomplete] = params[:suburb_autocomplete]
       if  @result.errors.empty?
         flash[:unconfirmed] = true
       else
