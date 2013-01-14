@@ -7,6 +7,18 @@ class CheckEnrolmentController < ApplicationController
     session[:captcha_id] = @captcha_image.captcha_id
   end
   
+  
+  def update
+     @person = Person.find_by_id(params[:person][:id])
+     #update the person if they are in the DB
+     if @person
+       @person.update_attributes(params[:person])
+       @person.save
+     else
+       @person = Person.new(params[:person]) unless @person
+     end
+  end
+  
   def check
     check = EnrolmentCheck.new(params[:person])
     @result = check.result(params[:captcha], session[:captcha_id] , session[:aec_cookies])

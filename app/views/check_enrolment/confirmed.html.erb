@@ -4,27 +4,55 @@
   <div class="lead">
     <%= @result.enrolled_address %>
   </div>
-
-  <%= form_tag('https://secure.aec.gov.au/OnlineForms/Enrolment/Form/Apply/83056040-0525-4745-bc91-a04d00a11c5d', :authenticity_token => false) do %>
-    <%= hidden_field_tag "SubmitRequest.FormId", "83056040-0525-4745-bc91-a04d00a11c5d" %>
-    <%= hidden_field_tag "SubmitRequest.FormPurpose", "changeofdetails" %>
-    <%= hidden_field_tag "ChangeAddress", "true" %>
-    <%= hidden_field_tag "SubmitRequest.Elector.GivenNames", @person.given_names %>
-    <%= hidden_field_tag "SubmitRequest.Elector.Surname", @person.surname %>
-    <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.HabitationName","" %>
-    <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.FlatNumber", @person.flat_number %>
-    <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.StreetNumber", @person.street_number %>
-    <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.StreetName", @person.street_name %>
-    <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.StreetType", @person.street_type %>
-    <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.Locality", @person.locality %>
-    <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.State", @person.state %>
-    <%= hidden_field_tag "SubmitRequest.Elector.PreviousAddress.Postcode", @person.postcode %>
-    <%= hidden_field_tag "SubmitRequest.Elector.Email", @person.email %>
-    
-    <%= hidden_field_tag "FormMode", "Wizard" %>
-    <p>
-      <strong>If you have moved please</strong>
-      <%= submit_tag "Update your details", :class => "btn btn-success" %>
-    </p>
-  <% end %>
 </div>
+
+<div class="well">
+  <strong>If you have moved please...</strong>
+  <%= form_for Person.new, :url => { :action => "update"} do |f| %>
+     <div class="row-fluid">
+       <div class="span6">
+         <%= f.label :flat_number %>
+         <%= f.text_field :flat_number %><br />
+         <%= f.label :street_number %>
+         <%= f.text_field :street_number %><br />
+         <%= f.label :street_name %>
+         <%= f.text_field :street_name %><br />
+         <%= f.label :street_type %>
+         <%= f.text_field :street_type %><br />
+         <%= f.label "Suburb & Postcode" %>
+         <%= text_field_tag(:suburb_autocomplete, flash[:suburb_autocomplete]) %>
+         <%= f.hidden_field :postcode %>
+         <%= f.hidden_field :suburb %>
+         <br />
+         <br />
+         <%= hidden_field_tag "person[id]", @person.id %>
+         <%= hidden_field_tag "given_names", @person.given_names %>
+         <%= hidden_field_tag "surname", @person.surname %>
+         <%= hidden_field_tag "old_flat_number", @person.flat_number %>
+         <%= hidden_field_tag "old_street_number", @person.street_number %>
+         <%= hidden_field_tag "old_street_name", @person.street_name %>
+         <%= hidden_field_tag "old_street_type", @person.street_type %>
+         <%= hidden_field_tag "old_locality", @person.locality %>
+         <%= hidden_field_tag "old_state", @person.state %>
+         <%= hidden_field_tag "old_postcode", @person.postcode %>
+         <%= hidden_field_tag "email", @person.email %>
+         <%= f.submit "Update your details", :class => "btn btn-success" %>
+       </div>
+     </div>
+   <% end %>
+</div>
+ <script src="/AEC_postcodes_and_suburbs.json"></script>
+ <script src="/street_types.json"></script>
+ <script>
+ $( "#person_street_type" ).autocomplete({
+   source: street_types
+ });
+ $( "#suburb_autocomplete" ).autocomplete({
+   source: suburbs,
+   select: function( event, ui ) {
+          $( "#person_suburb" ).val( ui.item.value.split(" - ")[1] );
+          $( "#person_postcode" ).val(ui.item.value.split(" - ")[0] );
+          return true;
+        }
+ });
+</script
