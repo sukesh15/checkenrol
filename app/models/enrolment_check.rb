@@ -27,22 +27,6 @@ class AECParser < HTTParty::Parser
 
   def html
     AECResponse.new(Nokogiri::HTML(body))
-
-    # if (!html_doc.css('#ctl00_ContentPlaceHolderBody_panelSuccess').empty?)
-    #   return {
-    #   :enrolment_status => :confirmed,
-    #   :address => "xyz",
-    #   :federal_division => "",
-    #   :state_district => "",
-    #   :state_region => "",
-    #   :local_government_area => ""
-    #   } 
-    # elsif (!html_doc.css('#ctl00_ContentPlaceHolderBody_panelFailed').empty?)
-    #   return {:enrolment_status => :failed}
-    # else
-    #   return {:enrolment_status => :captcha_failed}
-    # end
-
   end
 end
 

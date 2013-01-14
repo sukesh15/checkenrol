@@ -7,7 +7,7 @@
 </div>
 
 <div class="well">
-  <strong>If you have moved please...</strong>
+  <h3>If you have moved please update your address...</h3>
   <%= form_for Person.new, :url => { :action => "update"} do |f| %>
      <div class="row-fluid">
        <div class="span6">
@@ -17,26 +17,30 @@
          <%= f.text_field :street_number %><br />
          <%= f.label :street_name %>
          <%= f.text_field :street_name %><br />
-         <%= f.label :street_type %>
-         <%= f.text_field :street_type %><br />
-         <%= f.label "Suburb & Postcode" %>
-         <%= text_field_tag(:suburb_autocomplete, flash[:suburb_autocomplete]) %>
-         <%= f.hidden_field :postcode %>
-         <%= f.hidden_field :suburb %>
-         <br />
-         <br />
-         <%= hidden_field_tag "person[id]", @person.id %>
-         <%= hidden_field_tag "given_names", @person.given_names %>
-         <%= hidden_field_tag "surname", @person.surname %>
-         <%= hidden_field_tag "old_flat_number", @person.flat_number %>
-         <%= hidden_field_tag "old_street_number", @person.street_number %>
-         <%= hidden_field_tag "old_street_name", @person.street_name %>
-         <%= hidden_field_tag "old_street_type", @person.street_type %>
-         <%= hidden_field_tag "old_locality", @person.locality %>
-         <%= hidden_field_tag "old_state", @person.state %>
-         <%= hidden_field_tag "old_postcode", @person.postcode %>
-         <%= hidden_field_tag "email", @person.email %>
-         <%= f.submit "Update your details", :class => "btn btn-success" %>
+ 
+        
+         </div>
+         <div class="span6">
+          <%= f.label :street_type %>
+          <%= f.text_field :street_type %><br />
+          <%= f.label "Suburb & Postcode" %>
+          <%= text_field_tag(:suburb_autocomplete, flash[:suburb_autocomplete]) %>
+          <%= f.hidden_field :postcode %>
+          <%= f.hidden_field :suburb %>
+          <br />
+          <br />
+          <%= hidden_field_tag "person[id]", @person.id %>
+          <%= hidden_field_tag "given_names", @person.given_names %>
+          <%= hidden_field_tag "surname", @person.surname %>
+          <%= hidden_field_tag "old_flat_number", @person.flat_number %>
+          <%= hidden_field_tag "old_street_number", @person.street_number %>
+          <%= hidden_field_tag "old_street_name", @person.street_name %>
+          <%= hidden_field_tag "old_street_type", @person.street_type %>
+          <%= hidden_field_tag "old_locality", @person.locality %>
+          <%= hidden_field_tag "old_state", @person.state %>
+          <%= hidden_field_tag "old_postcode", @person.postcode %>
+          <%= hidden_field_tag "email", @person.email %>
+          <%= f.submit "Update", :class => "btn btn-success" %>
        </div>
      </div>
    <% end %>
