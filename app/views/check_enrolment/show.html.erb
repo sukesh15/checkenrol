@@ -77,7 +77,7 @@ $( "#person_street_type" ).autocomplete({
 });
 $( "#suburb_autocomplete" ).autocomplete({
   source: suburbs,
-  minLength: 2,
+  minLength: 3,
   select: function( event, ui ) {
          $( "#person_suburb" ).val( ui.item.value.split(" - ")[1] );
          $( "#person_postcode" ).val(ui.item.value.split(" - ")[0] );
