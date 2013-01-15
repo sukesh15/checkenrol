@@ -14,6 +14,7 @@
     <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.State", @person.state %>
     <%= hidden_field_tag "SubmitRequest.Elector.EnrolledAddress.Postcode", @person.postcode %>
     <%= hidden_field_tag "SubmitRequest.Elector.Email", @person.email %>
+    <%= hidden_field_tag "SubmitRequest.Elector.Mobile", @person.mobile %>
     <%= hidden_field_tag "FormMode", "Wizard" %>
       <div class="well">
         <h3>We could not find you on the electoral roll.</h3>
@@ -56,7 +57,10 @@
 
         <%= f.label :surname %>
         <%= f.text_field :surname %><br />
-
+        
+        <%= f.label :mobile %>
+        <%= f.text_field :mobile %><br />
+        
         <%= f.label :email %>
         <%= f.email_field :email %>&nbsp;<label class="checkbox"><%= check_box_tag 'mailinglist', "yes", true%> Sign up to our mailing list</label>
         <br />
