@@ -1,0 +1,61 @@
+
+Feature 1: The app will perform validation on submitted fields on the check enrolment form
+- Go to the front page
+- Click 'check enrolment' without filling in any fields
+- You should see validation error messages for all required fields
+- In particular you will see that the security code could not be confirmed
+- Fill in all fields, but get the security code wrong
+- You will see that the security code could not be confirmed
+- All the other fields should stay filled in
+
+Feature 2: A person not on the roll can enrol
+- Go to the front page
+- Enter the details of someone who is not on the roll
+- submit the form
+- You should see that the person is not on the roll
+- You should see the form pre-filled with the details so that they can try again
+- Change the details slightly and try again
+- You should see that the person is not on the roll
+- You should see the form pre-filled with the details so that they can try again
+- This time choose 'Enrol now'
+- You should be taken to the AEC's NEW enrolment wizard FOR THE RIGHT STATE
+- All the details you filled in should be pre-filled in the wizard, including
+      :Name details
+      :Current Address Details
+      :Email
+      :Mobile
+      
+Feature 3: A person on the roll can update their details
+- Go to the front page
+- Enter the details of someone who is on the roll
+- submit the form
+- You should see that the person is on the roll at a certain address
+- Enter new address details into the form and submit 'Update'
+- You should be taken to the AEC's UPDATE enrolment wizard FOR THE RIGHT STATE
+- All the details you filled in should be pre-filled in the wizard, including
+      :Name details
+      :Current Address Details
+      :Previous Address Details
+      :Email
+      :Mobile
+      
+Feature 4: The App can collect details for a contact database
+- Assuming you left the checkbox ticked in the above scenarios (1, 2 and 3):
+   - The database should now contain 3 records
+      - 1 record containing the details obtained from the first un-enrolled person check
+      - 1 record containing the details obtained from the updated un-enrolled person check
+      - 1 record containing the details of the enrolled person
+          - the address details should be the NEW address
+      - no record should have been stored for the validation failure scenario
+      
+Feature: The User can opt out of the App collecting details
+- Re-execute scenarios 2 and 3 but uncheck the checkbox
+- Everything should still work, but there should be no records written to the DB
+
+Feature: The app can be used by multiple organisations
+- Go to the front page with /greens/ at the end of the url
+- The logo should be the public/greens_logo.png
+- Re-execute feature 4
+- Everything should work and be rebranded as The Greens
+- The database records created this time should belong to the 'greens' organisation (whereas before they belonged to 'default' )
+      
