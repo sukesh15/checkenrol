@@ -1,6 +1,5 @@
 class AECResponse
   def initialize doc
-    puts doc
     @doc = doc
   end
   
