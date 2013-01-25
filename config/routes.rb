@@ -47,8 +47,8 @@ Greenrol::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'check_enrolment#show' , :organisation => 'greens', :constraints => { :subdomain => 'greens' } 
-  root :to => 'check_enrolment#show' , :organisation => 'aycc', :constraints => { :subdomain => 'aycc' } 
+  root :to => 'check_enrolment#show' , :organisation => 'greens', :constraints => { :domain => 'enrolgreen2013.org' } 
+  root :to => 'check_enrolment#show' , :organisation => 'aycc', :constraints => { :subdomain => 'aycc', :domain => 'enrolonline.org' } 
   root :to => 'check_enrolment#show' , :organisation => 'default'
 
  
