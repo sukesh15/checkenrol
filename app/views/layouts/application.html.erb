@@ -25,7 +25,7 @@
     <div class="navbar navbar-fluid-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="brand" href="/"><img width="80px" src="<%= "/#{params[:organisation]}_logo.png" %>"> Are You Enrolled?</a>
+          <a class="brand" href='/<%= "#{params[:organisation]}" %>'><img width="80px" src="<%= "/#{params[:organisation]}_logo.png" %>"> Are You Enrolled?</a>
         </div>
       </div>
     </div>
@@ -37,7 +37,7 @@
       </div><!--/row-->
 
       <footer>
-        <p>&copy; Enrolment Elves 2013</p>
+        <p><a href='/<%= "#{params[:organisation]}/check_enrolment/privacy" %>'>A note on Privacy</p>
       </footer>
 
     </div> <!-- /container -->
