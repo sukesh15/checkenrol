@@ -52,10 +52,16 @@ Feature: The User can opt out of the App collecting details
 - Re-execute scenarios 2 and 3 but uncheck the checkbox
 - Everything should still work, but there should be no records written to the DB
 
+
 Feature: The app can be used by multiple organisations
 - Go to the front page with /greens/ at the end of the url
 - The logo should be the public/greens_logo.png
 - Re-execute feature 4
 - Everything should work and be rebranded as The Greens
 - The database records created this time should belong to the 'greens' organisation (whereas before they belonged to 'default' )
-      
+   
+
+Feature: The User can view the privacy policy
+- click 'A note on privacy'
+- The Privacy policy should be shown
+- The 'contact' links should open an email to the relevant organisation      
