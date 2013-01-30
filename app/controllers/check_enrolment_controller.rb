@@ -42,7 +42,7 @@ class CheckEnrolmentController < ApplicationController
   end
     
   def privacy
-    @contact_email = (params[:organisation] == "greens") ? "greens@foo.bar" : "other@foo.bar"
+    @contact_email = (params[:organisation] == "greens") ? "admin@act.greens.org.au" : "info@youthclimatecoalition.org"
     @website_address = (params[:organisation] == "greens") ? "www.enrolgreens2013.org" : "enrolonline.org"
   end
   
