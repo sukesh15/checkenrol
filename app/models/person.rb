@@ -3,10 +3,10 @@ class Person < ActiveRecord::Base
   SUBURB_STATE_REGEX = /(.*) \((.*)\)$/
   
   def locality
-    SUBURB_STATE_REGEX.match(self.suburb)[1]
+    SUBURB_STATE_REGEX.match(self.suburb)[1] unless suburb.empty?
   end
   
   def state
-    SUBURB_STATE_REGEX.match(self.suburb)[2]
+    SUBURB_STATE_REGEX.match(self.suburb)[2] unless suburb.empty?
   end
 end
