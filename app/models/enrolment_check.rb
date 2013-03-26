@@ -1,6 +1,5 @@
 class AECResponse
   def initialize doc
-    File.open("it.html", 'w') { |file| file.write(doc) }
     @doc = doc
   end
   
