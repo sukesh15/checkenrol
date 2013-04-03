@@ -17,8 +17,11 @@
     <%= hidden_field_tag "SubmitRequest.Elector.Mobile", @person.mobile %>
     <%= hidden_field_tag "FormMode", "Wizard" %>
       <div class="well">
-        <h3>We could not find you on the electoral roll.</h3>
-
+        <% if flash[:system_error] %>
+          <h3>We could not check your enrolment due to a system error. Enrol now to be sure.</h3>
+        <% else %>
+          <h3>We could not find you on the electoral roll.</h3>
+        <%end %>
         <%= submit_tag "Enrol Now", :class => "btn btn-success btn-small" %></div>
   <% end %>
 <% end %>

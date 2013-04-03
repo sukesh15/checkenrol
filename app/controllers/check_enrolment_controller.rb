@@ -23,6 +23,7 @@ class CheckEnrolmentController < ApplicationController
       if  @result.errors.empty?
         @person.save if params[:mailinglist]
         flash[:unconfirmed] = true
+        flash[:system_error] = @result.system_error?
       else
         flash[:errors] = @result.errors
       end

@@ -47,7 +47,25 @@ Feature 4: The App can collect details for a contact database
       - 1 record containing the details of the enrolled person
           - the address details should be the NEW address
       - no record should have been stored for the validation failure scenario
-      
+
+Feature: The app allows people to enrol even when the check enrolment service is not working
+      - Create a condition that will cause the AEC enrolment check to error ( an easy way is to set VIEWSTATE to garbage in enrolment_check.rb)
+      - Go to the front page
+      - Enter the details of someone who may be on the roll
+      - submit the form
+      - You should see that the roll could not be checked due to a system error
+      - You should see the form pre-filled with the details so that they can try again
+      - Change the details slightly and try again
+      - You should see that the person is not on the roll
+      - You should see the form pre-filled with the details so that they can try again
+      - This time choose 'Enrol now'
+      - You should be taken to the AEC's NEW enrolment wizard FOR THE RIGHT STATE
+      - All the details you filled in should be pre-filled in the wizard, including
+            :Name details
+            :Current Address Details
+            :Email
+            :Mobile
+
 Feature: The User can opt out of the App collecting details
 - Re-execute scenarios 2 and 3 but uncheck the checkbox
 - Everything should still work, but there should be no records written to the DB
