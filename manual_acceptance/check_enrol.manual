@@ -51,11 +51,11 @@ Feature 4: The App can collect details for a contact database
 Feature: The app allows people to enrol even when the check enrolment service is not working
       - Create a condition that will cause the AEC enrolment check to error ( an easy way is to set VIEWSTATE to garbage in enrolment_check.rb)
       - Go to the front page
-      - Enter the details of someone who may be on the roll
+      - Enter the details of someone who is not on the roll
       - submit the form
       - You should see that the roll could not be checked due to a system error
       - You should see the form pre-filled with the details so that they can try again
-      - Change the details slightly and try again
+      - Fix the error condition and try again
       - You should see that the person is not on the roll
       - You should see the form pre-filled with the details so that they can try again
       - This time choose 'Enrol now'
@@ -77,9 +77,16 @@ Feature: The app can be used by multiple organisations
 - Re-execute feature 4
 - Everything should work and be rebranded as The Greens
 - The database records created this time should belong to the 'greens' organisation (whereas before they belonged to 'default' )
-   
 
 Feature: The User can view the privacy policy
 - click 'A note on privacy'
 - The Privacy policy should be shown
 - The 'contact' links should open an email to the relevant organisation      
+
+Feature: Production urls
+- The following urls should work for their respective organisations
+      The Greens : http://enrolgreen2013.org 
+      AYCC       : https://aycc.enrolonline.org/ 
+      ANUSA      : https://aycc.enrolonline.org/anusa
+  NOTE THAT THESE RELY ON THE DOMAIN TO CHOOSE THE ORG, SO YOU CANT TEST IN DEV CURRENTLY
+ 
