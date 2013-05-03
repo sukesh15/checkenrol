@@ -5,6 +5,6 @@ rvm:
 env:
   - DB=sqlite
 # uncomment this line if your project needs to run something other than `rake`:
-script:
+
+before_script:
   - bundle exec rake db:migrate --trace
-  - bundle exec rake spec
