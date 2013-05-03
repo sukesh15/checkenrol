@@ -1,6 +1,6 @@
-require "selenium-webdriver"
+
 require "spec_helper"
-include RSpec::Expectations
+
 
 describe "enrolment check validations" do
 
