@@ -14,9 +14,10 @@ class CaptchaImage
   
   attr_reader :captcha_id
   
-  def initialize 
-    @captcha_id = Digest::MD5.hexdigest("alex" + rand.to_s)
-    @response = CaptchaImage.get("https://oevf.aec.gov.au/BotDetectCaptcha.ashx?get=image&c=verifyenrolment_ctl00_contentplaceholderbody_captchacode&t=#{@captcha_id}")
+  def initialize(options={})
+    r = Random.new.rand
+    @captcha_id = Digest::MD5.hexdigest("alex" + r.to_s)
+    @response = CaptchaImage.get("https://oevf.aec.gov.au/BotDetectCaptcha.ashx?get=image&c=verifyenrolment_ctl00_contentplaceholderbody_captchacode&t=#{@captcha_id}", options)
   end
   
   def data_uri
