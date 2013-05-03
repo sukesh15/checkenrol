@@ -148,6 +148,7 @@ DEPENDENCIES
   nokogiri
   pg
   rails (= 3.2.11)
+  rake
   rspec-rails (~> 2.0)
   sass-rails (~> 3.2.3)
   selenium-webdriver
