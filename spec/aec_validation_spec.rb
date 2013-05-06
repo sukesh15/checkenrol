@@ -33,7 +33,7 @@ describe "enrolment check validations" do
     "Please enter your street name",
     "Please enter your postcode",
     "Please enter a valid postcode",
-    "Please enter the verification code",
+    #"Please enter the verification code",
     "Sorry, the entered security code could not be confirmed"]
 
     errors.count.should == 7

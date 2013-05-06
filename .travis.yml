@@ -6,3 +6,9 @@ before_script: "bundle exec rake db:migrate --trace"
 script: "bundle exec rake spec"
 rvm:
   - 1.9.3
+notifications:
+  email:
+    recipients:
+      - sukesh@thoughtworks.com
+    on_success: [change] # default: change
+    on_failure: [always] # default: always
