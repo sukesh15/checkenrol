@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
-
+gem 'travis'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'httparty'
@@ -27,7 +27,6 @@ group :test, :development do
   gem "rspec-rails", "~> 2.0"
   gem 'sqlite3'
   gem 'selenium-webdriver'
-  gem 'travis'
   gem 'rake'
 end
 
