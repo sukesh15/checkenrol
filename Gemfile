@@ -27,6 +27,7 @@ group :test, :development do
   gem "rspec-rails", "~> 2.0"
   gem 'sqlite3'
   gem 'selenium-webdriver'
+  gem 'travis'
   gem 'rake'
 end
 
