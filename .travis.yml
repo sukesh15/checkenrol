@@ -10,4 +10,5 @@ notifications:
   email:
     recipients:
       - sukesh@thoughtworks.com
+      - ellensandell@gmail.com
     on_failure: always
