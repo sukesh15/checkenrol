@@ -1,4 +1,3 @@
-
 require "spec_helper"
 
 
@@ -29,7 +28,7 @@ describe "enrolment check validations" do
     end
 
     expected_errors = ["Please enter your surname" ,
-    "Please enter given names",
+    "Please enter given names (make sure you put your middle name if you have one)",
     "Please enter your street name",
     "Please enter your postcode",
     "Please enter a valid postcode",
