@@ -1,4 +1,3 @@
-
 <% if flash[:unconfirmed] %>
   <%= form_tag('https://secure.aec.gov.au/OnlineForms/Enrolment/Form/Apply/83056040-0525-4745-bc91-a04d00a11c5d', :authenticity_token => false) do %>
     <%= hidden_field_tag "SubmitRequest.FormId", "83056040-0525-4745-bc91-a04d00a11c5d" %>
@@ -20,7 +19,8 @@
         <% if flash[:system_error] %>
           <h3>We could not check your enrolment due to a system error. Enrol now to be sure.</h3>
         <% else %>
-          <h3>We could not find you on the electoral roll.</h3>
+          <h3>We couldn't find you on the roll, but we've pre-filled your details into the official Electoral Commission enrolment form. Click through to complete the form and update your enrolment.</h3>
+          <br><div style="font-size:10pt">you don't need the details of your "previous address", you can just skip that page</div>
         <%end %>
         <%= submit_tag "Enrol Now", :class => "btn btn-success btn-small" %></div>
   <% end %>
@@ -71,7 +71,7 @@
         <img src="<%= @captcha_image.data_uri %>"><br />
         <%= text_field_tag(:captcha, nil, :autocorrect => "off", :autocapitalize => "off") %><br />
 
-        <%= f.submit "Check Enrolment", :class => "btn btn-success" %>
+        <%= f.submit "Check or update my enrolment", :class => "btn btn-success" %>
       </div>
     </div>
   <% end %>
