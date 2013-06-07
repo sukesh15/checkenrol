@@ -53,7 +53,7 @@ class EnrolmentCheck
         "__EVENTVALIDATION"=>"/wEWCALg2JyIBQK8uovuDgL2jZepBgKlqePyCQLl642+AgKU6uOkAwKK8NXFBwLk1LqzCAPQieUycRjMdK8YHibz+nanMz6S",
          "ctl00$ContentPlaceHolderBody$textSurname"=> @persons_details[:surname],
          "ctl00$ContentPlaceHolderBody$textGivenName"=> @persons_details[:given_names],
-         "ctl00$ContentPlaceHolderBody$textStreetName"=> @persons_details[:street_name],
+         "ctl00$ContentPlaceHolderBody$textStreetName"=> "#{@persons_details[:street_name]} #{@persons_details[:street_type]}",
          "ctl00$ContentPlaceHolderBody$comboStreetType"=> "", #we don't actually need to send this through just for the check
          "ctl00$ContentPlaceHolderBody$textPostcode"=> @persons_details[:postcode],
          "ctl00$ContentPlaceHolderBody$DropdownSuburb"=> @persons_details[:suburb],
