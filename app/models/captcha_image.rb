@@ -11,21 +11,21 @@ end
 class CaptchaImage
   include HTTParty
   parser DataUrlParser
-  
+
   attr_reader :captcha_id
-  
+
   def initialize(options={})
     r = Random.new.rand
-    @captcha_id = Digest::MD5.hexdigest("alex" + r.to_s)
-    @response = CaptchaImage.get("https://oevf.aec.gov.au/BotDetectCaptcha.ashx?get=image&c=verifyenrolment_ctl00_contentplaceholderbody_captchacode&t=#{@captcha_id}", options)
+    @captcha_id = Digest::MD5.hexdigest("checkenrol" + r.to_s)
+    @response = CaptchaImage.get("https://oevf.aec.gov.au/BotDetectCaptcha.ashx?get=image&c=verifyenrolment_ctl00_contentplaceholderbody_captchaverificationcode&t=#{@captcha_id}", options)
   end
-  
+
   def data_uri
     @response.parsed_response
   end
-  
+
   def cookies
     @response.headers['set-cookie']
   end
-  
+
 end

@@ -57,8 +57,8 @@ class EnrolmentCheck
          "ctl00$ContentPlaceHolderBody$comboStreetType"=> "", #we don't actually need to send this through just for the check
          "ctl00$ContentPlaceHolderBody$textPostcode"=> @persons_details[:postcode],
          "ctl00$ContentPlaceHolderBody$DropdownSuburb"=> @persons_details[:suburb],
-         "LBD_VCID_verifyenrolment_ctl00_contentplaceholderbody_captchacode"=> captcha_id,
-         "ctl00$ContentPlaceHolderBody$CaptchaCodeTextBox"=> captcha_text,
+         "LBD_VCID_verifyenrolment_ctl00_contentplaceholderbody_captchaverificationcode"=> captcha_id,
+         "ctl00$ContentPlaceHolderBody$textVerificationCode"=> captcha_text,
          "ctl00$ContentPlaceHolderBody$buttonVerify"=>"Verify Enrolment"
       },
       :headers => {
