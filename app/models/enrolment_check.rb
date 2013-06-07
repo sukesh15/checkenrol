@@ -1,4 +1,6 @@
 class AECResponse
+  ERROR_CSS_SELECTOR = "div.requiredtext span:not([style*=\"display: none\"])"
+
   def initialize doc
     @doc = doc
   end
@@ -20,7 +22,7 @@ class AECResponse
   end
 
   def errors
-    errors = @doc.css("table span.requiredtext:not([style*=\"display: none\"])").|(@doc.xpath('//h1[contains(text(), "Sorry, the entered security code could not be confirmed")]'))
+    errors = @doc.css(ERROR_CSS_SELECTOR).|(@doc.xpath('//h1[contains(text(), "Sorry, the entered security code could not be confirmed")]'))
     errors.map{|error| error.text}.reject{|error| error.include?("e.g.")}
   end
 end

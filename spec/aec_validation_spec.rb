@@ -2,11 +2,9 @@ require "spec_helper"
 
 
 describe "enrolment check validations" do
-
-
   before(:each) do
     @driver = Selenium::WebDriver.for :firefox
-    @base_url = "https://testcheckenrol.herokuapp.com/"
+    @base_url = ENV['CHECKENROL_URL'] || "https://testcheckenrol.herokuapp.com/"
 
     @driver.manage.timeouts.implicit_wait = 30
   end
@@ -28,20 +26,13 @@ describe "enrolment check validations" do
     end
 
     expected_errors = ["Please enter your surname" ,
-    "Please enter given names (make sure you put your middle name if you have one)",
-    "Please enter your street name",
+    "Please enter given names",
     "Please enter your postcode",
     "Please enter a valid postcode",
     "Please enter the verification code",
     "Sorry, the entered security code could not be confirmed"]
 
-    errors.count.should == 7
+    errors.count.should == expected_errors.size
     expected_errors.should =~ errors
-
   end
-
-
-
-
-
 end
