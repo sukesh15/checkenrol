@@ -17,13 +17,13 @@
          <%= f.text_field :street_number %><br />
          <%= f.label :street_name %>
          <%= f.text_field :street_name %><br />
- 
-        
+
+
          </div>
          <div class="span6">
           <%= f.label :street_type %>
           <%= f.text_field :street_type %><br />
-          <%= f.label "Suburb & Postcode" %>
+          <%= f.label "Postcode & Suburb" %>
           <%= text_field_tag(:suburb_autocomplete, flash[:suburb_autocomplete]) %>
           <%= f.hidden_field :postcode %>
           <%= f.hidden_field :suburb %>
