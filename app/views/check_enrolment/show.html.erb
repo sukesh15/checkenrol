@@ -37,7 +37,7 @@
   <%= form_for @person, :url => { :action => "check"} do |f| %>
     <div class="row-fluid">
       <div class="span6">
-        
+
         <%= f.label :flat_number %>
         <%= f.text_field :flat_number %><br />
         <%= f.label :street_number %>
@@ -46,12 +46,12 @@
         <%= f.text_field :street_name %><br />
         <%= f.label :street_type %>
         <%= f.text_field :street_type %><br />
-        <%= f.label "Suburb & Postcode" %>
+        <%= f.label "Postcode & Suburb" %>
         <%= text_field_tag(:suburb_autocomplete, flash[:suburb_autocomplete]) %>
         <%= f.hidden_field :postcode %>
         <%= f.hidden_field :suburb %>
-        
-      
+
+
       </div>
 
       <div class="span6">
@@ -60,10 +60,10 @@
 
         <%= f.label :surname %>
         <%= f.text_field :surname %><br />
-        
+
         <%= f.label :mobile %>
         <%= f.text_field :mobile %><br />
-        
+
         <%= f.label :email %>
         <%= f.email_field :email %>&nbsp;<label class="checkbox"><%= check_box_tag 'mailinglist', "yes", true%> Sign up to our mailing list</label>
         <br />
